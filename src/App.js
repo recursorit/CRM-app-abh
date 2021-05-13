@@ -4,8 +4,7 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {
   Switch,
-  Route,
-  useHistory
+  Route
 } from "react-router-dom";
 import Login from './Components/Login';
 import Register from './Components/Register';

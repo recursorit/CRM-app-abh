@@ -1,5 +1,6 @@
 import React from 'react'
 import { Button, Card, Col, Container, Form, Row } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
 const Login =()=> {
     return(
@@ -15,7 +16,7 @@ const Login =()=> {
                         Email :
                         </Form.Label>
                         <Col sm="12">
-                        <Form.Control type="text" placeholder="emial" />
+                        <Form.Control type="text" placeholder="email" />
                         </Col>
                     </Form.Group>
 
@@ -37,7 +38,9 @@ const Login =()=> {
                 <Card.Body>
                 <Card.Text className="display-4 text-light">Sign Up</Card.Text>    
                 <Card.Title className="display-6 pt-4 text-light">To Register as a new user please click on the button below </Card.Title>
+                <Link to="/register">
                 <Button variant="outline-light" className="m-4">Register</Button>
+                </Link>
                 </Card.Body>
             </Card>
             </Col>

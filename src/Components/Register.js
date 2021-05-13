@@ -1,7 +1,22 @@
 import React from 'react'
 import { Button, Card, Col, Container, Form, Row } from 'react-bootstrap'
+import { useDispatch } from 'react-redux'
+import { useHistory } from 'react-router'
+import { addUser } from '../redux/actions'
+
 
 const Register =()=> {
+    const history = useHistory()
+    const dispatch = useDispatch()
+    const add = dispatch(addUser({
+        email:'a',
+        username:'b',
+        password:'c'
+    }))
+    const addUsers = ()=>{
+        add();
+        history.push('/')
+    }
     return(
         <Container>
             <Row className="my-5 px-4 pt-5 justify-content-center">
@@ -15,7 +30,7 @@ const Register =()=> {
                         Email :
                         </Form.Label>
                         <Col sm="12">
-                        <Form.Control type="text" placeholder="emial" />
+                        <Form.Control type="text" placeholder="email" />
                         </Col>
                     </Form.Group>
 
@@ -24,7 +39,7 @@ const Register =()=> {
                         Username :
                         </Form.Label>
                         <Col sm="12">
-                        <Form.Control type="text" placeholder="emial" />
+                        <Form.Control type="text" placeholder="username" />
                         </Col>
                     </Form.Group>
 
@@ -36,7 +51,9 @@ const Register =()=> {
                         <Form.Control type="password" placeholder="Password" />
                         </Col>
                     </Form.Group>
-                    <Button variant="outline-success" className="m-4">Sign up</Button>
+                    <Button
+                    onClick={()=>addUsers()}
+                    variant="outline-success" className="m-4">Sign up</Button>
                     </Form>
                 </Card.Body>
             </Card>

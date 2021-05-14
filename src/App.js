@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import Login from './Components/Login';
 import Register from './Components/Register';
+import UserDashboard from './Components/UserDashboard';
 
 function App() {
   return (
@@ -18,6 +19,9 @@ function App() {
         </Route>
         <Route path="/register" >
           <Register />
+        </Route>
+        <Route path="/login/:username" >
+          <UserDashboard />
         </Route>
       </Switch>
     </Container>

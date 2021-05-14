@@ -7,6 +7,7 @@ import { userIndex } from '../redux/actions'
 const Login =()=> {
     const [email,setEmail] = useState("")
     const [password,setPassword] = useState("")
+    const [loggedin,setloggedin] = useState(true)
     
     const history = useHistory()
     const dispatch = useDispatch()
@@ -20,7 +21,7 @@ const Login =()=> {
         return userList.some((obj=>obj.email === email) && (obj=>obj.password === password)) ? 
         (updateIndex(),
         history.push(`/login/${email}`)):
-        console.log(false);
+        setloggedin(false)
     }
 
     return(
@@ -51,9 +52,13 @@ const Login =()=> {
                         </Col>
                     </Form.Group>
 
+                   {loggedin ? null :  <Card.Text className="text-danger display-7 mb-0" >
+                        Enter correct email id and password or signUp if you haven't
+                    </Card.Text>}   
+
                     <Button onClick={()=>LoginCompare()}
                     disabled={!email || !password}
-                    variant="outline-success" className="m-4"> Log In
+                    variant="outline-success" className={loggedin ? "m-4" : " m-2"}> Log In
                     </Button>
 
                     </Form>

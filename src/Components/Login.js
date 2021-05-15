@@ -7,7 +7,10 @@ import { userIndex } from '../redux/actions'
 const Login =()=> {
     const [email,setEmail] = useState("")
     const [password,setPassword] = useState("")
-    const [loggedin,setloggedin] = useState(true)
+    const [loginvalid,setloginvalid] = useState(false)
+    const [passvalid,setpassvalid] = useState(false)
+
+    
     
     const history = useHistory()
     const dispatch = useDispatch()
@@ -17,11 +20,17 @@ const Login =()=> {
 
     const updateIndex = () => dispatch(userIndex(userindex))
 
+    const validation = () => {
+        return userList.some(obj=>obj.email === email) ? null : setloginvalid(true),
+               userList.some(obj=>obj.password === password)? null : setpassvalid(true)
+        
+    }
+
     const LoginCompare = () => { 
         return userList.some((obj=>obj.email === email) && (obj=>obj.password === password)) ? 
         (updateIndex(),
         history.push(`/login/${email}`)):
-        setloggedin(false)
+        validation()
     }
 
     return(
@@ -31,34 +40,41 @@ const Login =()=> {
             <Card border="success" className="Card rounded-0" > 
                 <Card.Body>
                     <Card.Text className="text-success display-4">Login</Card.Text>
-                    <Form className="px-4">
+                    <Form className="px-4" >
                     <Form.Group as={Row} >
                         <Form.Label column sm="12" className=" text-start text-success">
                         Email :
                         </Form.Label>
                         <Col sm="12">
-                        <Form.Control type="text" placeholder="email"
+                        <Form.Control 
+                        isInvalid={loginvalid}
+                        type="text" placeholder="email@example.com"   
                         value={email} onChange={e=>setEmail(e.target.value)} />
                         </Col>
                     </Form.Group>
+                    {loginvalid ?  <Card.Text className="text-danger text-start display-7 mb-0" >
+                        Email id is incorrect/SignUp
+                    </Card.Text>: null  }
 
                     <Form.Group as={Row} >
                         <Form.Label column sm="12" className=" text-start text-success">
                         Password :
                         </Form.Label>
                         <Col sm="12">
-                        <Form.Control type="password" placeholder="Password"
+                        <Form.Control 
+                        isInvalid={passvalid}
+                        type="password" placeholder="Password"
                         value={password} onChange={e=>setPassword(e.target.value)} />
                         </Col>
                     </Form.Group>
 
-                   {loggedin ? null :  <Card.Text className="text-danger display-7 mb-0" >
-                        Enter correct email id and password or signUp if you haven't
-                    </Card.Text>}   
+                   {passvalid ?  <Card.Text className="text-danger text-start display-7 mb-0" >
+                        password is incorrect
+                    </Card.Text> : null  } 
 
                     <Button onClick={()=>LoginCompare()}
                     disabled={!email || !password}
-                    variant="outline-success" className={loggedin ? "m-4" : " m-2"}> Log In
+                    variant="outline-success" className={(passvalid || loginvalid)? "mt-1" : "mt-4" }> Log In
                     </Button>
 
                     </Form>

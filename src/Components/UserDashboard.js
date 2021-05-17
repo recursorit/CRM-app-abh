@@ -28,7 +28,7 @@ const UserDashboard = ()=>{
                                 </Dropdown.Toggle>
 
                                 <Dropdown.Menu>
-                                    <Dropdown.Item href={`/login/edit`} onClick={()=>history.push(`/login/edit`)}>{userData.email}</Dropdown.Item>
+                                    <Dropdown.Item href={`/login/${userData.email}/edit`} onClick={()=>history.push(`/login/${userData.email}/edit`)}>{userData.email}</Dropdown.Item>
                                     <Dropdown.Item href="/">Log Out</Dropdown.Item>
                                     
                                 </Dropdown.Menu>

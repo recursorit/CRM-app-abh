@@ -21,10 +21,10 @@ function App() {
         <Route path="/register" >
           <Register />
         </Route>
-        <Route path="/login/:username" >
+        <Route exact path="/login/:username" >
           <UserDashboard />
         </Route>
-        <Route path="/login/edit" >
+        <Route path="/login/:username/edit" >
           <EditUser />
         </Route>
       </Switch>

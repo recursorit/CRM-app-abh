@@ -93,7 +93,7 @@ const EditUser =()=> {
                     </Form.Group>
                     <Button disabled={!email || !password || !firstname || !lastname}
                     onClick={()=>addUsers()}
-                    variant="outline-success" className="m-4">Sign up</Button>
+                    variant="outline-success" className="m-4">Update Details</Button>
                     </Form>
                 </Card.Body>
             </Card>

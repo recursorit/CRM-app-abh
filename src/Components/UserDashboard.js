@@ -10,7 +10,7 @@ const UserDashboard = ()=>{
     return(
         <Container fluid className="p-0">
             <Row>
-            <Navbar bg="success">
+            <Navbar bg="success" >
             <Container>
             <Navbar.Brand className="text-light">Welcome</Navbar.Brand>
             <Navbar.Toggle />

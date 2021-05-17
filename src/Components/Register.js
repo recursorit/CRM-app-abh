@@ -10,6 +10,8 @@ const Register =()=> {
     const [lastname,setLastname] = useState("")
     const [email,setEmail] = useState("")
     const [password,setPassword] = useState("")
+    const [emailvalid,setEmailvalid] = useState(false)
+    const [passwordvalid,setPasswordvalid] = useState(false)
 
 
     const history = useHistory()
@@ -21,8 +23,9 @@ const Register =()=> {
         lastname:lastname
     }))
     const addUsers = ()=>{
-        add();
-        history.push('/')
+        return email.includes("@" && ".com") ? (setEmailvalid(false),(password.length > 7) ?
+        (add(),
+        history.push('/')) : setPasswordvalid(true)) : setEmailvalid(true)
     }
     return(
         <Container>
@@ -57,8 +60,13 @@ const Register =()=> {
                         Email :
                         </Form.Label>
                         <Col sm="12">
-                        <Form.Control type="text" placeholder="email"
+                        <Form.Control isInvalid={emailvalid}
+                        // pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                        type="text" placeholder="email"
                         value={email} onChange={e=>setEmail(e.target.value)} />
+                        {emailvalid ?  <Card.Text className="text-danger text-start display-7 mb-0" >
+                        enter correct email id
+                        </Card.Text>: null  }
                         </Col>
                     </Form.Group>
 
@@ -67,8 +75,13 @@ const Register =()=> {
                         Password :
                         </Form.Label>
                         <Col sm="12">
-                        <Form.Control type="password" placeholder="Password"
+                        <Form.Control
+                        isInvalid={passwordvalid}
+                        type="password" placeholder="Password"
                         value={password} onChange={e=>setPassword(e.target.value)} />
+                        {passwordvalid ?  <Card.Text className="text-danger text-start display-7 mb-0" >
+                        password should have atleast 8 letters
+                        </Card.Text>: null  }
                         </Col>
                     </Form.Group>
                     <Button disabled={!email || !password || !firstname || !lastname}

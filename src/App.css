@@ -1,7 +1,15 @@
 .App {
   text-align: center;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 .Card {
   height: 22rem;
 }
+
+.Links{
+  color:green
+}
+
+

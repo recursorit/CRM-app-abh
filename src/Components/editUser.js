@@ -1,15 +1,20 @@
 import React, { useState } from 'react'
 import { Button, Card, Col, Container, Form, Row } from 'react-bootstrap'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
 import { addUser } from '../redux/actions'
 //import CryptoJS from 'crypto-js'
 
-const Register =()=> {
-    const [firstname,setFirstname] = useState("")
-    const [lastname,setLastname] = useState("")
-    const [email,setEmail] = useState("")
-    const [password,setPassword] = useState("")
+const EditUser =()=> {
+    const userList = useSelector(state=>state.users.users)
+    const index = useSelector(state=>state.index.currentuser)
+    const userData = userList[index]
+    
+
+    const [firstname,setFirstname] = useState(userData.firstname)
+    const [lastname,setLastname] = useState(userData.lastname)
+    const [email,setEmail] = useState(userData.email)
+    const [password,setPassword] = useState(userData.password)
     const [emailvalid,setEmailvalid] = useState(false)
     const [passwordvalid,setPasswordvalid] = useState(false)
 
@@ -35,7 +40,7 @@ const Register =()=> {
             <Col xs={10} lg={8}  className="p-0 mt-5">
             <Card border="success" className=" rounded-0" > 
                 <Card.Body>
-                    <Card.Text className="text-success display-4">Register</Card.Text>
+                    <Card.Text className="text-success display-4">Edit details</Card.Text>
                     <Form className="px-4">
                     <Form.Group as={Row} >
                         <Form.Label column sm="12" className=" text-start text-success">
@@ -98,4 +103,4 @@ const Register =()=> {
     )
 }
 
-export default Register
+export default EditUser

@@ -9,10 +9,11 @@ import {
 import Login from './Components/Login';
 import Register from './Components/Register';
 import UserDashboard from './Components/UserDashboard';
+import EditUser from './Components/editUser';
 
 function App() {
   return (
-    <Container fluid className="App">
+    <Container fluid className="App p-0">
       <Switch>
         <Route exact path="/" >
           <Login />
@@ -22,6 +23,9 @@ function App() {
         </Route>
         <Route path="/login/:username" >
           <UserDashboard />
+        </Route>
+        <Route path="/login/edit" >
+          <EditUser />
         </Route>
       </Switch>
     </Container>

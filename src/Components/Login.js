@@ -3,6 +3,7 @@ import { Button, Card, Col, Container, Form, Row } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useHistory } from 'react-router-dom'
 import { userIndex } from '../redux/actions'
+//import CryptoJS from 'crypto-js'
 
 const Login =()=> {
     const [email,setEmail] = useState("")
@@ -10,7 +11,7 @@ const Login =()=> {
     const [loginvalid,setloginvalid] = useState(false)
     const [passvalid,setpassvalid] = useState(false)
 
-    
+    //const enpass = CryptoJS.AES.encrypt("abh",'1').toString()
     
     const history = useHistory()
     const dispatch = useDispatch()
@@ -21,8 +22,8 @@ const Login =()=> {
     const updateIndex = () => dispatch(userIndex(userindex))
 
     const validation = () => {
-        return userList.some(obj=>obj.email === email) ? null : setloginvalid(true),
-               userList.some(obj=>obj.password === password)? null : setpassvalid(true)
+        return (userList.some(obj=>obj.email === email) ? null : setloginvalid(true),
+               userList.some(obj=>obj.password === password)? null : setpassvalid(true))
         
     }
 

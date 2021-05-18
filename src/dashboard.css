@@ -4,3 +4,12 @@
     background: rgb(203, 247, 202);
 }  
 
+@media (max-width: 767px) {
+    .sidenav{
+        height: 12rem;
+        padding: 2rem;
+        background: rgb(203, 247, 202);
+        margin-bottom: 1rem;
+    }
+}
+

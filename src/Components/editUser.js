@@ -2,10 +2,12 @@ import React, { useState } from 'react'
 import { Button, Card, Col, Container, Form, Row } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
-import { addUser } from '../redux/actions'
+import { updateUser } from '../redux/actions'
+import { withRouter } from "react-router";
+
 //import CryptoJS from 'crypto-js'
 
-const EditUser =()=> {
+const Edituser =()=> {
     const userList = useSelector(state=>state.users.users)
     const index = useSelector(state=>state.index.currentuser)
     const userData = userList[index]
@@ -17,22 +19,26 @@ const EditUser =()=> {
     const [password,setPassword] = useState(userData.password)
     const [emailvalid,setEmailvalid] = useState(false)
     const [passwordvalid,setPasswordvalid] = useState(false)
-
+    const [role,setrole] = useState(userData.role)
+    const [status,setstatus] = useState(userData.status)
     //const enpass = CryptoJS.AES.encrypt(password,'1').toString()
     
 
     const history = useHistory()
     const dispatch = useDispatch()
-    const add =()=> dispatch(addUser({
+    const add =()=> dispatch(updateUser({
+        index:index,
         email:email,
         password:password,
         firstname:firstname,
-        lastname:lastname
+        lastname:lastname,
+        role:role,
+        status:status
     }))
     const addUsers = ()=>{
         return email.includes("@" && ".com") ? (setEmailvalid(false),(password.length > 7) ?
         (add(),
-        history.push('/')) : setPasswordvalid(true)) : setEmailvalid(true)
+        history.goBack()) : setPasswordvalid(true)) : setEmailvalid(true)
     }
     return(
         <Container>
@@ -91,7 +97,27 @@ const EditUser =()=> {
                         </Card.Text>: null  }
                         </Col>
                     </Form.Group>
-                    <Button disabled={!email || !password || !firstname || !lastname}
+
+                    <Form.Group as={Row} >
+                        <Form.Label column sm="12" className=" text-start text-success">
+                        Role :
+                        </Form.Label>
+                        <Col sm="12">
+                        <Form.Control type="text" placeholder="lastname"
+                        value={role} onChange={e=>setrole(e.target.value)} />
+                        </Col>
+                    </Form.Group>
+
+                    <Form.Group as={Row} >
+                        <Form.Label column sm="12" className=" text-start text-success">
+                        Status :
+                        </Form.Label>
+                        <Col sm="12">
+                        <Form.Control type="text" placeholder="lastname"
+                        value={status} onChange={e=>setstatus(e.target.value)} />
+                        </Col>
+                    </Form.Group>
+                    <Button disabled={!email || !password || !firstname || !lastname || !status || !role}
                     onClick={()=>addUsers()}
                     variant="outline-success" className="m-4">Update Details</Button>
                     </Form>
@@ -102,5 +128,7 @@ const EditUser =()=> {
         </Container>
     )
 }
+
+const EditUser = withRouter(Edituser)
 
 export default EditUser

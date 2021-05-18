@@ -4,10 +4,11 @@ import { useSelector } from 'react-redux'
 import '../dashboard.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useHistory } from 'react-router';
+import {BiPencil } from "react-icons/bi";
+import { withRouter } from "react-router";
 
 
-
-const UserDashboard = ()=>{
+const Userdashboard = ()=>{
     const userList = useSelector(state=>state.users.users)
     const index = useSelector(state=>state.index.currentuser)
     const userData = userList[index]
@@ -28,8 +29,11 @@ const UserDashboard = ()=>{
                                 </Dropdown.Toggle>
 
                                 <Dropdown.Menu>
-                                    <Dropdown.Item href={`/login/${userData.email}/edit`} onClick={()=>history.push(`/login/${userData.email}/edit`)}>{userData.email}</Dropdown.Item>
-                                    <Dropdown.Item href="/">Log Out</Dropdown.Item>
+                                    <Dropdown.Item  className="text-success"
+                                     onClick={()=>history.push(`/login/${userData.email}/edit`)}>
+                                         {userData.email}   <BiPencil className="mb-1" color="green"/>
+                                    </Dropdown.Item>
+                                    <Dropdown.Item onClick={()=>history.push("/")} className="text-success">Log Out</Dropdown.Item>
                                     
                                 </Dropdown.Menu>
                                 </Dropdown>
@@ -39,20 +43,21 @@ const UserDashboard = ()=>{
             </Navbar>
             
             <Row>
-            <Col xs={2} className="p-0" >      
+            <Col sm={0} md={2} className="p-0 xs-display-none" >      
             <Nav  className="flex-column sidenav">
-            <Nav.Link className="link-success" href="/#">Users</Nav.Link>
+            
+            <Nav.Link className="link-success" >Users</Nav.Link>
             <Nav.Link className="link-success">Projects</Nav.Link>
             <Nav.Link className="link-success">Options</Nav.Link>
 
             
             </Nav>     
             </Col>
-            <Col xs={10} className="p-0">  
+            <Col xs={12} md={10}  className="p-0">  
             <Container >
                 <p className="display-4 text-success mt-3 text-start px-4">Users</p>
-                <Table striped bordered hover variant="success">
-                <thead>
+                <Table striped bordered hover variant="success" className="text-dark display-7">
+                <thead >
                     <tr>
                     <th>First Name</th>
                     <th>Last Name</th>
@@ -63,11 +68,11 @@ const UserDashboard = ()=>{
                 </thead>
                 <tbody>
                     {userList.map(user=><tr>
-                        <th>{user.firstname}</th>
-                        <th>{user.lastname}</th>
-                        <th>{user.email}</th>
-                        <th>{user.joined}</th>
-                        <th>{user.role}</th>
+                        <th className="text-success">{user.firstname}</th>
+                        <th className="text-success">{user.lastname}</th>
+                        <th className="text-success">{user.email}</th>
+                        <th className="text-success">{user.joined}</th>
+                        <th className="text-success">{user.role}</th>
                     </tr>)}
                 </tbody>
                 </Table>
@@ -78,7 +83,7 @@ const UserDashboard = ()=>{
     )
 }
 
-export default UserDashboard
+const UserDashboard = withRouter(Userdashboard)
 
-
+  export default UserDashboard
 

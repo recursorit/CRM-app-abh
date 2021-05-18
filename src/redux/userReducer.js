@@ -1,5 +1,5 @@
 import moment from "moment";
-import { ADD_USER } from "./actions"
+import { ADD_USER, UPDATE_USER } from "./actions"
 //import CryptoJS from 'crypto-js'
 
 
@@ -32,6 +32,25 @@ const userReducer = (state=initialState,action)=>{
                                             status:"active"
                                         }]
             }
+        case UPDATE_USER :
+            
+            return{
+                ...state,
+                users:[
+                    state.users.splice(action.payload.index,1,{
+                        email:action.payload.email,
+                        password:action.payload.password,
+                        firstname:action.payload.firstname,
+                        lastname:action.payload.lastname,
+                        role:action.payload.role,
+                        status:action.payload.status,
+                        joined: moment().format('YYYY-MM-DD'),
+                        joinedTime:moment().format('h:mm:ss a'),
+                    })
+                    
+                ]
+                
+            }    
         default: return state    
     }
 }

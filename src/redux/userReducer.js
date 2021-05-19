@@ -41,6 +41,7 @@ const userReducer = (state=initialState,action)=>{
                 users:state.users.map(user=>{
                     if(user.index === action.payload.index){
                         return {
+                            index:action.payload.index,
                             email:action.payload.email,
                             password:action.payload.password,
                             firstname:action.payload.firstname,

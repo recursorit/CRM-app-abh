@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 import '../dashboard.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useHistory } from 'react-router';
-import {BiPencil } from "react-icons/bi";
+import {BiPencil,BiEdit } from "react-icons/bi";
 import { withRouter } from "react-router";
 
 
@@ -64,6 +64,7 @@ const Userdashboard = ()=>{
                     <th>Email</th>
                     <th>Joined</th>
                     <th>Role</th>
+                    {userData.role === "admin" ? <th>Edit</th> : null}
                     </tr>
                 </thead>
                 <tbody>
@@ -73,6 +74,9 @@ const Userdashboard = ()=>{
                         <th className="text-success">{user.email}</th>
                         <th className="text-success">{user.joined}</th>
                         <th className="text-success">{user.role}</th>
+                        {userData.role === "admin" ?
+                         <th><BiEdit /></th>
+                         : null}
                     </tr>)}
                 </tbody>
                 </Table>

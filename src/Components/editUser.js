@@ -38,7 +38,7 @@ const Edituser =()=> {
     const addUsers = ()=>{
         return email.includes("@" && ".com") ? (setEmailvalid(false),(password.length > 7) ?
         (add(),
-        history.goBack()) : setPasswordvalid(true)) : setEmailvalid(true)
+        history.push(`/login/${email}`)) : setPasswordvalid(true)) : setEmailvalid(true)
     }
     return(
         <Container>

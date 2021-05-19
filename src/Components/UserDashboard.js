@@ -3,7 +3,7 @@ import { Card, Col, Container, Dropdown, Nav, Navbar, Row,Table } from 'react-bo
 import { useDispatch, useSelector } from 'react-redux'
 import '../dashboard.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useHistory } from 'react-router';
+import { Route, Switch, useHistory } from 'react-router';
 import {BiPencil,BiEdit } from "react-icons/bi";
 import { withRouter } from "react-router";
 import { adminEditIndex } from '../redux/actions';
@@ -32,7 +32,7 @@ const Userdashboard = ()=>{
 
                                 <Dropdown.Menu>
                                     <Dropdown.Item  className="text-success"
-                                     onClick={()=>history.push(`/login/${userData.email}/edit`)}>
+                                     onClick={()=>history.push(`/edit`)}>
                                          {userData.email}   <BiPencil className="mb-1" color="green"/>
                                     </Dropdown.Item>
                                     <Dropdown.Item onClick={()=>history.push("/")} className="text-success">Log Out</Dropdown.Item>
@@ -48,9 +48,9 @@ const Userdashboard = ()=>{
             <Col sm={0} md={2} className="p-0 xs-display-none" >      
             <Nav  className="flex-column sidenav">
             
-            <Nav.Link className="link-success" >Users</Nav.Link>
-            <Nav.Link className="link-success">Projects</Nav.Link>
-            <Nav.Link className="link-success">Options</Nav.Link>
+            <Nav.Link className="link-success" onClick={()=>history.push(`/login/${userData.email}`)} >Users</Nav.Link>
+            <Nav.Link className="link-success" onClick={()=>history.push(`/login/${userData.email}/projects`)}>Projects</Nav.Link>
+            <Nav.Link className="link-success" onClick={()=>history.push(`/login/${userData.email}/options`)}>Options</Nav.Link>
 
             
             </Nav>     
@@ -90,6 +90,8 @@ const Userdashboard = ()=>{
             </Col>
             </Row>
 
+            <Switch>
+                <Route exact path="/login/:username">
                 <p className="display-4 text-success mt-3 text-start px-4">Users</p>
                 <Table striped bordered hover variant="success" className="text-dark display-7">
                 <thead >
@@ -113,13 +115,26 @@ const Userdashboard = ()=>{
                         <th className="text-success">{user.status}</th>
                         {userData.role === "admin" ?
                          <th><BiEdit color="#007E33" onClick={
-                             ()=>{ return history.push(`/login/${user.email}/AdminEdit`),
+                             ()=>{ return history.push(`/AdminEdit`),
                                  dispatch(adminEditIndex(user.index))}   
                             } /></th>
                          : null}
                     </tr>)}
                 </tbody>
                 </Table>
+
+                </Route>
+
+                <Route path="/login/:username/projects">
+                <p className="display-4 text-success mt-3 text-start px-4">Projects</p>
+                </Route>
+
+                <Route path="/login/:username/options">
+                <p className="display-4 text-success mt-3 text-start px-4">Options</p>
+                </Route>
+            </Switch>
+
+                
             </Container>
             </Col>
             </Row>

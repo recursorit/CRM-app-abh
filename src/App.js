@@ -22,13 +22,13 @@ function App() {
         <Route path="/register" >
           <Register />
         </Route>
-        <Route exact path="/login/:username" >
+        <Route path="/login/:username" >
           <UserDashboard />
         </Route>
-        <Route path="/login/:username/edit" >
+        <Route path="/edit" >
           <EditUser />
         </Route>
-        <Route path="/login/:username/AdminEdit" >
+        <Route path="/AdminEdit" >
           <AdminEdit />
         </Route>
       </Switch>

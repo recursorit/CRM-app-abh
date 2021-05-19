@@ -73,7 +73,7 @@ const Userdashboard = ()=>{
                     <Card.Body>
                     <Card.Title className="text-success">Projects</Card.Title>
                     <Card.Text>
-                        No. of Projects - 1
+                        No. of Projects - 0
                     </Card.Text>
                     </Card.Body>
                 </Card>
@@ -83,7 +83,7 @@ const Userdashboard = ()=>{
                     <Card.Body>
                     <Card.Title className="text-success">Options</Card.Title>
                     <Card.Text>
-                        No. of options - 1
+                        No. of options - 0
                     </Card.Text>
                     </Card.Body>
                 </Card>
@@ -93,13 +93,13 @@ const Userdashboard = ()=>{
             <Switch>
                 <Route exact path="/login/:username">
                 <p className="display-4 text-success mt-3 text-start px-4">Users</p>
-                <Table striped bordered hover variant="success" className="text-dark display-7">
+                <Table striped bordered hover variant="success" className="text-dark display-7 Utable">
                 <thead >
                     <tr>
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>Email</th>
-                    <th>Joined</th>
+                    {/* <th>Joined</th> */}
                     <th>Role</th>
                     <th>Status</th>
                     {userData.role === "admin" ? <th>Edit</th> : null}
@@ -110,7 +110,7 @@ const Userdashboard = ()=>{
                         <th className="text-success">{user.firstname}</th>
                         <th className="text-success">{user.lastname}</th>
                         <th className="text-success">{user.email}</th>
-                        <th className="text-success">{user.joined}</th>
+                        {/* <th className="text-success">{user.joined}</th> */}
                         <th className="text-success">{user.role}</th>
                         <th className="text-success">{user.status}</th>
                         {userData.role === "admin" ?

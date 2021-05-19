@@ -10,6 +10,7 @@ import Login from './Components/Login';
 import Register from './Components/Register';
 import UserDashboard from './Components/UserDashboard';
 import EditUser from './Components/editUser';
+import AdminEdit from './Components/AdminEdit';
 
 function App() {
   return (
@@ -26,6 +27,9 @@ function App() {
         </Route>
         <Route path="/login/:username/edit" >
           <EditUser />
+        </Route>
+        <Route path="/login/:username/AdminEdit" >
+          <AdminEdit />
         </Route>
       </Switch>
     </Container>

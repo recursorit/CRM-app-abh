@@ -115,8 +115,8 @@ const Userdashboard = ()=>{
                         <th className="text-success">{user.status}</th>
                         {userData.role === "admin" ?
                          <th><BiEdit color="#007E33" onClick={
-                             ()=>{ return history.push(`/AdminEdit`),
-                                 dispatch(adminEditIndex(user.index))}   
+                             ()=>{ return (history.push(`/AdminEdit`),
+                                 dispatch(adminEditIndex(user.index)))}   
                             } /></th>
                          : null}
                     </tr>)}

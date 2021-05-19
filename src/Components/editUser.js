@@ -21,7 +21,7 @@ const Edituser =()=> {
     const [passwordvalid,setPasswordvalid] = useState(false)
     const [role,setrole] = useState(userData.role)
     const [status,setstatus] = useState(userData.status)
-    //const enpass = CryptoJS.AES.encrypt(password,'1').toString()
+    
     
 
     const history = useHistory()
@@ -74,7 +74,6 @@ const Edituser =()=> {
                         </Form.Label>
                         <Col sm="12">
                         <Form.Control isInvalid={emailvalid}
-                        // pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
                         type="text" placeholder="email"
                         value={email} onChange={e=>setEmail(e.target.value)} />
                         {emailvalid ?  <Card.Text className="text-danger text-start display-7 mb-0" >

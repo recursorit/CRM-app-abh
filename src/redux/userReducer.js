@@ -7,7 +7,7 @@ const initialState={
     users:[
         {
             email:"abh",
-            password:"abh",
+            password:btoa("abh"),
             firstname:"Abh",
             lastname:"T",
             role:"admin" ,

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, Col, Container, Dropdown, Nav, Navbar, Row,Table } from 'react-bootstrap'
+import { Accordion, Button, Card, Col, Container, Dropdown, Nav, Navbar, Row,Table } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import '../dashboard.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -48,11 +48,25 @@ const Userdashboard = ()=>{
             <Col sm={0} md={2} className="p-0 xs-display-none" >      
             <Nav  className="flex-column sidenav">
             
-            <Nav.Link className="link-success" onClick={()=>history.push(`/login/${userData.email}`)} >Users</Nav.Link>
-            <Nav.Link className="link-success" onClick={()=>history.push(`/login/${userData.email}/projects`)}>Projects</Nav.Link>
-            <Nav.Link className="link-success" onClick={()=>history.push(`/login/${userData.email}/options`)}>Options</Nav.Link>
+            <Nav.Link className="link-success active" onClick={()=>history.push(`/login/${userData.email}`)} >Users</Nav.Link>
+            <Nav.Link className="link-success active" onClick={()=>history.push(`/login/${userData.email}/projects`)}>Projects</Nav.Link>
+            <Nav.Link className="link-success active" onClick={()=>history.push(`/login/${userData.email}/options`)}>Options</Nav.Link>
 
+            {/* <Accordion defaultActiveKey="0">
             
+                <Accordion.Toggle as={Button} variant="link" eventKey="0">
+                    Click me!
+                </Accordion.Toggle>
+                
+                <Accordion.Collapse eventKey="0">
+                <Container fluid>
+                <Nav.Link className="link-success" onClick={()=>history.push(`/login/${userData.email}`)} >Users</Nav.Link>
+                <Nav.Link className="link-success" onClick={()=>history.push(`/login/${userData.email}/projects`)}>Projects</Nav.Link>
+                <Nav.Link className="link-success" onClick={()=>history.push(`/login/${userData.email}/options`)}>Options</Nav.Link>
+                </Container>
+                </Accordion.Collapse>
+        
+            </Accordion> */}
             </Nav>     
             </Col>
             <Col xs={12} md={10}  className="p-0">  

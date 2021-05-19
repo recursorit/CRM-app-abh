@@ -3,7 +3,7 @@ import { Button, Card, Col, Container, Form, Row } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router'
 import { addUser } from '../redux/actions'
-//import CryptoJS from 'crypto-js'
+
 
 const Register =()=> {
     const [firstname,setFirstname] = useState("")
@@ -13,19 +13,19 @@ const Register =()=> {
     const [emailvalid,setEmailvalid] = useState(false)
     const [passwordvalid,setPasswordvalid] = useState(false)
 
-    //const enpass = CryptoJS.AES.encrypt(password,'1').toString()
+    
     
 
     const history = useHistory()
     const dispatch = useDispatch()
     const add =()=> dispatch(addUser({
         email:email,
-        password:password,
+        password:btoa(password),
         firstname:firstname,
         lastname:lastname
     }))
     const addUsers = ()=>{
-        return email.includes("@" && ".com") ? (setEmailvalid(false),(password.length > 7) ?
+        return ((email.includes("@" && ".")) && (email.indexOf(".") < (email.length-2))) ? (setEmailvalid(false),(password.length > 7) ?
         (add(),
         history.push('/')) : setPasswordvalid(true)) : setEmailvalid(true)
     }

@@ -17,18 +17,18 @@ const Login =()=> {
     const dispatch = useDispatch()
 
     const userList = useSelector(state=>state.users.users)
-    const userindex = userList.findIndex((obj=>obj.email === email) &&( obj=>obj.password === password) )
+    const userindex = userList.findIndex((obj=>obj.email === email) &&( obj=>obj.password === btoa(password)) )
 
     const updateIndex = () => dispatch(userIndex(userindex))
 
     const validation = () => {
         return (userList.some(obj=>obj.email === email) ? null : setloginvalid(true),
-               userList.some(obj=>obj.password === password)? null : setpassvalid(true))
+               userList.some(obj=>obj.password === btoa(password))? null : setpassvalid(true))
         
     }
 
     const LoginCompare = () => { 
-        return userList.some((obj=>obj.email === email) && (obj=>obj.password === password)) ? 
+        return userList.some((obj=>obj.email === email) && (obj=>obj.password === btoa(password))) ? 
         (updateIndex(),
         history.push(`/login/${email}`)):
         validation()

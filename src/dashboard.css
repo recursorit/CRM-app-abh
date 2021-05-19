@@ -4,6 +4,11 @@
     background: rgb(203, 247, 202);
 }  
 
+.active{
+    color:rgb(54, 41, 41);
+    font-weight:500;
+}
+
 @media (max-width: 767px) {
     .sidenav{
         height: 12rem;

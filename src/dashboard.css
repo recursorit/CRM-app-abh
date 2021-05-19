@@ -9,12 +9,24 @@
     font-weight:500;
 }
 
+.accord{
+    display: none;
+}
+
 @media (max-width: 767px) {
     .sidenav{
-        height: 12rem;
-        padding: 2rem;
+        height:min-content;
+        padding: 0.5rem;
         background: rgb(203, 247, 202);
         margin-bottom: 1rem;
+    }
+
+    .accord{
+        display: block;
+    }
+
+    .sidelink{
+        display: none;
     }
 }
 

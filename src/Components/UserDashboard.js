@@ -7,7 +7,7 @@ import { Route, Switch, useHistory } from 'react-router';
 import {BiPencil,BiEdit } from "react-icons/bi";
 import { withRouter } from "react-router";
 import { adminEditIndex } from '../redux/actions';
-
+import {GiHamburgerMenu } from "react-icons/gi";
 
 const Userdashboard = ()=>{
     const userList = useSelector(state=>state.users.users)
@@ -48,25 +48,26 @@ const Userdashboard = ()=>{
             <Col sm={0} md={2} className="p-0 xs-display-none" >      
             <Nav  className="flex-column sidenav">
             
-            <Nav.Link className="link-success active" onClick={()=>history.push(`/login/${userData.email}`)} >Users</Nav.Link>
-            <Nav.Link className="link-success active" onClick={()=>history.push(`/login/${userData.email}/projects`)}>Projects</Nav.Link>
-            <Nav.Link className="link-success active" onClick={()=>history.push(`/login/${userData.email}/options`)}>Options</Nav.Link>
+            <Nav.Link className="link-success active sidelink" onClick={()=>history.push(`/login/${userData.email}`)} >Users</Nav.Link>
+            <Nav.Link className="link-success active sidelink" onClick={()=>history.push(`/login/${userData.email}/projects`)}>Projects</Nav.Link>
+            <Nav.Link className="link-success active sidelink" onClick={()=>history.push(`/login/${userData.email}/options`)}>Options</Nav.Link>
 
-            {/* <Accordion defaultActiveKey="0">
+            <Accordion className="accord">
             
-                <Accordion.Toggle as={Button} variant="link" eventKey="0">
-                    Click me!
+                <Accordion.Toggle as={Button} variant="link-success" eventKey="0">
+                    <GiHamburgerMenu size="32" color="#007E33" />
                 </Accordion.Toggle>
                 
                 <Accordion.Collapse eventKey="0">
                 <Container fluid>
-                <Nav.Link className="link-success" onClick={()=>history.push(`/login/${userData.email}`)} >Users</Nav.Link>
-                <Nav.Link className="link-success" onClick={()=>history.push(`/login/${userData.email}/projects`)}>Projects</Nav.Link>
-                <Nav.Link className="link-success" onClick={()=>history.push(`/login/${userData.email}/options`)}>Options</Nav.Link>
+                <Nav.Link className="link-success active" onClick={()=>history.push(`/login/${userData.email}`)} >Users</Nav.Link>
+                <Nav.Link className="link-success active" onClick={()=>history.push(`/login/${userData.email}/projects`)}>Projects</Nav.Link>
+                <Nav.Link className="link-success active" onClick={()=>history.push(`/login/${userData.email}/options`)}>Options</Nav.Link>
+
                 </Container>
                 </Accordion.Collapse>
         
-            </Accordion> */}
+            </Accordion>
             </Nav>     
             </Col>
             <Col xs={12} md={10}  className="p-0">  

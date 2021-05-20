@@ -8,6 +8,15 @@ import { withRouter } from "react-router";
 //import CryptoJS from 'crypto-js'
 
 const Edituser =()=> {
+
+    const history = useHistory()
+    const dispatch = useDispatch()
+
+    const logged = useSelector(state=>state.logged.loggedIn)
+    if(logged === false){
+        history.push(`/`)
+    }
+
     const userList = useSelector(state=>state.users.users)
     const index = useSelector(state=>state.index.currentuser)
     const userData = userList[index]
@@ -22,10 +31,7 @@ const Edituser =()=> {
     const [role,setrole] = useState(userData.role)
     const [status,setstatus] = useState(userData.status)
     
-    
 
-    const history = useHistory()
-    const dispatch = useDispatch()
     const add =()=> dispatch(updateUser({
         index:index,
         email:email,

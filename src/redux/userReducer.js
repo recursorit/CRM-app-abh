@@ -1,6 +1,6 @@
 import moment from "moment";
-import { ADD_USER, UPDATE_USER } from "./actions"
-//import CryptoJS from 'crypto-js'
+import { ADD_USER, REMOVE_USER, UPDATE_USER } from "./actions"
+
 
 
 const initialState={
@@ -54,7 +54,15 @@ const userReducer = (state=initialState,action)=>{
                     } return user
                 })
                 
-            }    
+            } 
+        
+            case REMOVE_USER :
+            console.log(action.payload);
+                return{
+                    ...state,
+                    users:state.users.filter(user=> user.index !== action.payload) 
+                }
+            
         default: return state    
     }
 }

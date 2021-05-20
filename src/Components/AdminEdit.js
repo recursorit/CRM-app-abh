@@ -5,9 +5,17 @@ import { useHistory } from 'react-router'
 import { updateUser } from '../redux/actions'
 import { withRouter } from "react-router";
 
-//import CryptoJS from 'crypto-js'
 
 const Adminedit =()=> {
+
+    const history = useHistory()
+    const dispatch = useDispatch()
+
+    const logged = useSelector(state=>state.logged.loggedIn)
+    if(logged === false){
+        history.push(`/`)
+    }
+
     const userList = useSelector(state=>state.users.users)
     const index = useSelector(state=>state.adminEdit.index)
     const userData = userList[index]
@@ -21,11 +29,8 @@ const Adminedit =()=> {
     const [passwordvalid,setPasswordvalid] = useState(false)
     const [role,setrole] = useState(userData.role)
     const [status,setstatus] = useState(userData.status)
-    //const enpass = CryptoJS.AES.encrypt(password,'1').toString()
     
 
-    const history = useHistory()
-    const dispatch = useDispatch()
     const add =()=> dispatch(updateUser({
         index:index,
         email:email,

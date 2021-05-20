@@ -6,12 +6,7 @@ import { loggedIn, userIndex } from '../redux/actions'
 
 
 const Login =()=> {
-    const [email,setEmail] = useState("")
-    const [password,setPassword] = useState("")
-    const [loginvalid,setloginvalid] = useState(false)
-    const [passvalid,setpassvalid] = useState(false)
 
-    
     const history = useHistory()
     const dispatch = useDispatch()
 
@@ -20,6 +15,13 @@ const Login =()=> {
     if(logged === true){
         history.push(`/login/${currentUser}`)
     }
+
+    const [email,setEmail] = useState("")
+    const [password,setPassword] = useState("")
+    const [loginvalid,setloginvalid] = useState(false)
+    const [passvalid,setpassvalid] = useState(false)
+
+
 
     const userList = useSelector(state=>state.users.users)
     const userindex = userList.findIndex((obj=>obj.email === email) &&( obj=>obj.password === btoa(password)) )

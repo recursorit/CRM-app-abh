@@ -25,7 +25,7 @@ const Edituser =()=> {
     const [firstname,setFirstname] = useState(userData.firstname)
     const [lastname,setLastname] = useState(userData.lastname)
     const [email,setEmail] = useState(userData.email)
-    const [password,setPassword] = useState(userData.password)
+    const [password,setPassword] = useState(atob(userData.password))
     const [emailvalid,setEmailvalid] = useState(false)
     const [passwordvalid,setPasswordvalid] = useState(false)
     const [role,setrole] = useState(userData.role)
@@ -35,7 +35,7 @@ const Edituser =()=> {
     const add =()=> dispatch(updateUser({
         index:index,
         email:email,
-        password:password,
+        password:btoa(password),
         firstname:firstname,
         lastname:lastname,
         role:role,

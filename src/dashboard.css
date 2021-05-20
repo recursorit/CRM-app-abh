@@ -9,7 +9,7 @@
     font-weight:500;
 }
 .activ:active{
-    text-decoration: underline;
+    font-weight: 700;
 }
 
 .accord{

@@ -69,9 +69,9 @@ const Userdashboard = ()=>{
                 
                 <Accordion.Collapse eventKey="0">
                 <Container fluid>
-                <Nav.Link className="link-success active" onClick={()=>history.push(`/login/${userData.email}`)} >Users</Nav.Link>
-                <Nav.Link className="link-success active" onClick={()=>history.push(`/login/${userData.email}/projects`)}>Projects</Nav.Link>
-                <Nav.Link className="link-success active" onClick={()=>history.push(`/login/${userData.email}/options`)}>Options</Nav.Link>
+                <Nav.Link className="link-success activ" onClick={()=>history.push(`/login/${userData.email}`)} >Users</Nav.Link>
+                <Nav.Link className="link-success activ" onClick={()=>history.push(`/login/${userData.email}/projects`)}>Projects</Nav.Link>
+                <Nav.Link className="link-success activ" onClick={()=>history.push(`/login/${userData.email}/options`)}>Options</Nav.Link>
 
                 </Container>
                 </Accordion.Collapse>

@@ -8,6 +8,9 @@
     color:rgb(54, 41, 41);
     font-weight:500;
 }
+.activ:active{
+    text-decoration: underline;
+}
 
 .accord{
     display: none;

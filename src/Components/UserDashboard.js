@@ -120,11 +120,13 @@ const Userdashboard = ()=>{
                 <Table striped bordered hover variant="success" className="text-dark display-7 Utable">
                 <thead >
                     <tr>
-                    <th>First Name</th>
-                    <th>Last Name</th>
+                    <th> Name</th>
+                    {/* <th>Last Name</th> */}
                     <th>Email</th>
                     {/* <th>Joined</th> */}
-                    <th>Role</th>
+                    {userData.role === "admin" ? null : <th>Role</th> }
+                    {/* {userData.role === "admin" ? null : <th>Status</th> } */}
+                    {/* <th>Role</th> */}
                     <th>Status</th>
                     {userData.role === "admin" ? <th>Edit</th> : null}
                     {userData.role === "admin" ? <th>Delete</th> : null}
@@ -132,11 +134,13 @@ const Userdashboard = ()=>{
                 </thead>
                 <tbody>
                     {userList.map(user=><tr key={user.index}>
-                        <th className="text-success">{user.firstname}</th>
-                        <th className="text-success">{user.lastname}</th>
+                        <th className="text-success">{user.firstname} {user.lastname}</th>
+                        {/* <th className="text-success">{user.lastname}</th> */}
                         <th className="text-success">{user.email}</th>
                         {/* <th className="text-success">{user.joined}</th> */}
-                        <th className="text-success">{user.role}</th>
+                        {userData.role === "admin" ? null :  <th className="text-success">{user.role}</th> }
+                        {/* {userData.role === "admin" ? null : <th className="text-success">{user.status}</th> } */}
+                        {/* <th className="text-success">{user.role}</th> */}
                         <th className="text-success">{user.status}</th>
                         {userData.role === "admin" ?
                          <th><BiEdit color="#007E33" onClick={

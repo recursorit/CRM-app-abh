@@ -11,8 +11,8 @@ const Adminedit =()=> {
     const history = useHistory()
     const dispatch = useDispatch()
 
-    const logged = useSelector(state=>state.logged.loggedIn)
-    if(logged === false){
+    const logged =localStorage.getItem("loggedIn")// useSelector(state=>state.logged.loggedIn)
+    if(logged === "false"){
         history.push(`/`)
     }
 
@@ -43,11 +43,11 @@ const Adminedit =()=> {
     const addUsers = ()=>{
         return email.includes("@" && ".com") ? (setEmailvalid(false),(password.length > 7) ?
         (add(),
-        history.push(`/login/${email}`)) : setPasswordvalid(true)) : setEmailvalid(true)
+        history.push(`/login`)) : setPasswordvalid(true)) : setEmailvalid(true)
     }
     return(
         <Container>
-            <Row className="my-5 px-4 pt-5 justify-content-center">
+            <Row className=" px-4 pt-3 justify-content-center">
             <Col xs={10} lg={8}  className="p-0 mt-5">
             <Card border="success" className=" rounded-0" > 
                 <Card.Body>

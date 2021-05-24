@@ -9,6 +9,8 @@ import { withRouter } from "react-router";
 import { adminEditIndex, removeUser } from '../redux/actions';
 import {GiHamburgerMenu } from "react-icons/gi";
 import {MdCancel, MdDelete} from "react-icons/md";
+import EditUser from './editUser';
+import AdminEdit from './AdminEdit';
 
 const Userdashboard = ()=>{
 
@@ -41,7 +43,7 @@ const Userdashboard = ()=>{
 
                                 <Dropdown.Menu>
                                     <Dropdown.Item  className="text-success"
-                                     onClick={()=>history.push(`/edit`)}>
+                                     onClick={()=>history.push(`/login/edit`)}>
                                          {userData.email}   <BiPencil className="mb-1" color="green"/>
                                     </Dropdown.Item>
                                     <Dropdown.Item onClick={()=>{history.push("/");localStorage.setItem("loggedIn",false)}} className="text-success">Log Out</Dropdown.Item>
@@ -144,7 +146,7 @@ const Userdashboard = ()=>{
                         <th className="text-success">{user.status}</th>
                         {userData.role === "admin" ?
                          <th><BiEdit color="#007E33" onClick={
-                             ()=>{ return (history.push(`/AdminEdit`),
+                             ()=>{ return (history.push(`/login/AdminEdit`),
                                  dispatch(adminEditIndex(user.index)))}   
                             } /></th>
                          : null}
@@ -185,6 +187,13 @@ const Userdashboard = ()=>{
 
                 <Route path="/login/options">
                 <p className="display-4 text-success mt-3 text-start px-4">Options</p>
+                </Route>
+
+                <Route path="/login/edit" >
+                <EditUser />
+                </Route>
+                <Route path="/login/AdminEdit" >
+                <AdminEdit />
                 </Route>
             </Switch>
 

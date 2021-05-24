@@ -9,8 +9,7 @@ import {
 import Login from './Components/Login';
 import Register from './Components/Register';
 import UserDashboard from './Components/UserDashboard';
-import EditUser from './Components/editUser';
-import AdminEdit from './Components/AdminEdit';
+
 
 function App() {
   
@@ -24,15 +23,10 @@ function App() {
         <Route path="/register" >
           <Register />
         </Route>
-        <Route path="/login/" >
+        <Route path="/login" >
           <UserDashboard />
         </Route>
-        <Route path="/edit" >
-          <EditUser />
-        </Route>
-        <Route path="/AdminEdit" >
-          <AdminEdit />
-        </Route>
+        
       </Switch>
     </Container>
   );

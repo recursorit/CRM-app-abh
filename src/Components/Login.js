@@ -44,7 +44,7 @@ const Login =()=> {
 
     useEffect(()=>{
         const logged = localStorage.getItem("loggedIn")// useSelector(state=>state.logged.loggedIn)
-    console.log(logged)
+   
     //const currentUser = localStorage.getItem("currentUser")// useSelector(state=>state.logged.currentUser)
     if(logged === "true"){
         history.push(`/login`)

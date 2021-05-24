@@ -108,8 +108,11 @@ const Adminedit =()=> {
                         Role :
                         </Form.Label>
                         <Col sm="12">
-                        <Form.Control type="text" placeholder="lastname"
-                        value={role} onChange={e=>setrole(e.target.value)} />
+                        <Form.Control as="select"  
+                        value={role} onChange={e=>setrole(e.target.value)} >
+                            <option>admin</option>
+                            <option>user</option>
+                        </Form.Control>
                         </Col>
                     </Form.Group>
 
@@ -117,9 +120,12 @@ const Adminedit =()=> {
                         <Form.Label column sm="12" className=" text-start text-success">
                         Status :
                         </Form.Label>
-                        <Col sm="12">
-                        <Form.Control type="text" placeholder="lastname"
-                        value={status} onChange={e=>setstatus(e.target.value)} />
+                        <Col sm="12" className="text-start">
+                        
+                        <Form.Check inline label="Active" name="group1" type="radio" id={`inline-radio-1`} checked={status==="active"}
+                        value={status} onChange={()=>setstatus("active")} />
+                        <Form.Check inline label="Inactive" name="group1" type="radio" id={`inline-radio-2`} checked={status==="inactive"}
+                        value={status} onChange={()=>setstatus("inactive")} />         
                         </Col>
                     </Form.Group>
                     <Button disabled={!email || !password || !firstname || !lastname || !status || !role}

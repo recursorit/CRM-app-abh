@@ -86,6 +86,22 @@ const Register =()=> {
                         </Card.Text>: null  }
                         </Col>
                     </Form.Group>
+
+                    <Form.Group as={Row}>
+                        <Form.Label column sm="12" className=" text-start text-success">
+                        confirm Password :
+                        </Form.Label>
+                        <Col sm="12">
+                        <Form.Control
+                        isInvalid={passwordvalid}
+                        type="password" placeholder="Password"
+                        value={password} onChange={e=>setPassword(e.target.value)} />
+                        {passwordvalid ?  <Card.Text className="text-danger text-start display-7 mb-0" >
+                        password should have atleast 8 letters
+                        </Card.Text>: null  }
+                        </Col>
+                    </Form.Group>
+
                     <Button disabled={!email || !password || !firstname || !lastname}
                     onClick={()=>addUsers()}
                     variant="outline-success" className="m-4">Sign up</Button>

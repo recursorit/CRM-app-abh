@@ -11,7 +11,7 @@ const Adminedit =()=> {
     const history = useHistory()
     const dispatch = useDispatch()
 
-    const logged =localStorage.getItem("loggedIn")// useSelector(state=>state.logged.loggedIn)
+    const logged =localStorage.getItem("loggedIn")
     if(logged === "false"){
         history.push(`/`)
     }
@@ -124,7 +124,7 @@ const Adminedit =()=> {
                         
                         <Form.Check inline label="Active" name="group1" type="radio" id={`inline-radio-1`} checked={status==="active"}
                         value={status} onChange={()=>setstatus("active")} />
-                        <Form.Check inline label="Inactive" name="group1" type="radio" id={`inline-radio-2`} checked={status==="inactive"}
+                        <Form.Check inline label="Inactive" name="group1" type="radio" id={`inline-radio-2`} checked={status==="active"}
                         value={status} onChange={()=>setstatus("inactive")} />         
                         </Col>
                     </Form.Group>

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Button, Card, Col, Container, Form, Row } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useHistory } from 'react-router-dom'
-import { loggedIn, userIndex } from '../redux/actions'
+import {  userIndex } from '../redux/actions'
 
 
 const Login =()=> {
@@ -23,9 +23,7 @@ const Login =()=> {
     const userindex = userList.findIndex((obj=>obj.email === email) &&( obj=>obj.password === btoa(password)) )
 
     const updateIndex = () => dispatch(userIndex(userindex))
-    const updateLoggedin = () => {dispatch(loggedIn(email))
-        
-    }
+   
 
 
     const validation = () => {
@@ -36,16 +34,14 @@ const Login =()=> {
 
     const LoginCompare = () => { 
         return userList.some((obj=>obj.email === email) && (obj=>obj.password === btoa(password))) ? 
-        (updateIndex(),updateLoggedin(),localStorage.setItem("loggedIn",true),
+        (updateIndex(),localStorage.setItem("loggedIn",true),
         localStorage.setItem("currentUser",email),
         history.push(`/login`)):
         validation()
     }
 
     useEffect(()=>{
-        const logged = localStorage.getItem("loggedIn")// useSelector(state=>state.logged.loggedIn)
-   
-    //const currentUser = localStorage.getItem("currentUser")// useSelector(state=>state.logged.currentUser)
+        const logged = localStorage.getItem("loggedIn")
     if(logged === "true"){
         history.push(`/login`)
     } 

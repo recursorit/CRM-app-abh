@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button, Card, Col, Container, Form, Row } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router'
@@ -29,6 +29,17 @@ const Register =()=> {
         (add(),
         history.push('/')) : setPasswordvalid(true)) : setEmailvalid(true)
     }
+
+    useEffect(()=>{
+        const logged = localStorage.getItem("loggedIn")// useSelector(state=>state.logged.loggedIn)
+   
+    //const currentUser = localStorage.getItem("currentUser")// useSelector(state=>state.logged.currentUser)
+    if(logged === "true"){
+        history.push(`/login`)
+    } 
+    },[history])
+
+
     return(
         <Container>
             <Row className="my-5 px-4 pt-5 justify-content-center">

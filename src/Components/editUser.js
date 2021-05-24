@@ -5,14 +5,14 @@ import { useHistory } from 'react-router'
 import { updateUser } from '../redux/actions'
 import { withRouter } from "react-router";
 
-//import CryptoJS from 'crypto-js'
+
 
 const Edituser =()=> {
 
     const history = useHistory()
     const dispatch = useDispatch()
 
-    const logged =localStorage.getItem("loggedIn")// useSelector(state=>state.logged.loggedIn)
+    const logged =localStorage.getItem("loggedIn")
     if(logged === "false"){
         history.push(`/`)
     }

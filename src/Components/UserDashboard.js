@@ -8,19 +8,20 @@ import {BiPencil,BiEdit } from "react-icons/bi";
 import { withRouter } from "react-router";
 import { adminEditIndex, removeUser } from '../redux/actions';
 import {GiHamburgerMenu } from "react-icons/gi";
-import {MdCancel, MdDelete} from "react-icons/md";
+import {MdDelete} from "react-icons/md";
 import EditUser from './editUser';
 import AdminEdit from './AdminEdit';
 
 const Userdashboard = ()=>{
 
     const history = useHistory()
-    const logged =localStorage.getItem("loggedIn")// useSelector(state=>state.logged.loggedIn)
+    const logged =localStorage.getItem("loggedIn")
     if(logged === "false"){
         history.push(`/`)
     }
 
     const [modal,setmodal]= useState(false)
+
     const userList = useSelector(state=>state.users.users)
     const index = useSelector(state=>state.index.currentuser)
     const userData = userList[index]
@@ -152,7 +153,7 @@ const Userdashboard = ()=>{
                          : null}
 
                         {userData.role === "admin" ?
-                         <th>{user.role==="admin" ? <MdCancel color="#007E33"/> : <MdDelete color="#007E33" onClick={()=>setmodal(true)}  />}</th>
+                         <th> <MdDelete color="#007E33" onClick={()=>setmodal(true)}  /></th>
                          : null} 
 
 
@@ -160,14 +161,14 @@ const Userdashboard = ()=>{
                                     <Modal.Header >
                                         <Modal.Title>Confirm Action</Modal.Title>
                                     </Modal.Header>
-                                    <Modal.Body>Are you sure you want to remove this user?</Modal.Body>
+                                    <Modal.Body>{user.role === "admin" ? "you can't delete an admin" : "Are you sure you want to remove this user?"}</Modal.Body>
                                     <Modal.Footer>
                                         <Button variant="success" onClick={() => setmodal(false)}>
                                             Close
-                                    </Button>
-                                        <Button variant="danger" onClick={()=>{dispatch(removeUser(user.index)); setmodal(false)}}>
+                                        </Button>
+                                        {user.role==="admin"? null : <Button variant="danger" onClick={()=>{dispatch(removeUser(user.index)); setmodal(false)}}>
                                             Delete
-                                    </Button>
+                                        </Button>}
                                     </Modal.Footer>
                                 </Modal>
 

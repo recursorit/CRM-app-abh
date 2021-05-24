@@ -3,9 +3,6 @@ export const GET_INDEX = "GET_INDEX";
 export const UPDATE_USER = "UPDATE_USER";
 export const EDIT_INDEX = "EDIT_INDEX";
 export const REMOVE_USER = "REMOVE_USER"
-export const LOGGED_IN = "LOGGED_IN"
-export const LOGGED_OUT = "LOGGED_OUT"
-
 
 export const addUser = (info) => {
     return {
@@ -42,15 +39,3 @@ export const adminEditIndex = (info) => {
     }
 }
 
-export const loggedIn = (info) => {
-    return {
-        type:LOGGED_IN,
-        payload: info,
-    }
-}
-
-export const loggedOut = () => {
-    return {
-        type:LOGGED_OUT
-    }
-}

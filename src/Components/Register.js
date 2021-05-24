@@ -10,9 +10,12 @@ const Register =()=> {
     const [lastname,setLastname] = useState("")
     const [email,setEmail] = useState("")
     const [password,setPassword] = useState("")
+    
     const [emailvalid,setEmailvalid] = useState(false)
     const [passwordvalid,setPasswordvalid] = useState(false)
 
+    const [cpassword,setcPassword] = useState("")
+    const [passwordvalidC,setPasswordvalidC] = useState(false)
     
     
 
@@ -36,6 +39,14 @@ const Register =()=> {
         history.push(`/login`)
     } 
     },[history])
+
+    useEffect(()=>{
+        if(cpassword !== password){
+            setPasswordvalidC(true)
+        }
+        else setPasswordvalidC(false)
+        // eslint-disable-next-line
+    },[cpassword])
 
 
     return(
@@ -102,16 +113,16 @@ const Register =()=> {
                         </Form.Label>
                         <Col sm="12">
                         <Form.Control
-                        isInvalid={passwordvalid}
-                        type="password" placeholder="Password"
-                        value={password} onChange={e=>setPassword(e.target.value)} />
-                        {passwordvalid ?  <Card.Text className="text-danger text-start display-7 mb-0" >
-                        password should have atleast 8 letters
+                        isInvalid={passwordvalidC}
+                        type="password" placeholder="Confirm Password"
+                        value={cpassword} onChange={e=>setcPassword(e.target.value)} />
+                        {passwordvalidC ?  <Card.Text className="text-danger text-start display-7 mb-0" >
+                        password doesn't match
                         </Card.Text>: null  }
                         </Col>
                     </Form.Group>
 
-                    <Button disabled={!email || !password || !firstname || !lastname}
+                    <Button disabled={!email || !password || !firstname || !lastname || passwordvalidC}
                     onClick={()=>addUsers()}
                     variant="outline-success" className="m-4">Sign up</Button>
                     </Form>

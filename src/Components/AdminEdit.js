@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button, Card, Col, Container, Form, Row } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
@@ -29,6 +29,17 @@ const Adminedit =()=> {
     const [passwordvalid,setPasswordvalid] = useState(false)
     const [role,setrole] = useState(userData.role)
     const [status,setstatus] = useState(userData.status)
+
+    const [cpassword,setcPassword] = useState(atob(userData.password))
+    const [passwordvalidC,setPasswordvalidC] = useState(false)
+
+    useEffect(()=>{
+        if(cpassword !== password){
+            setPasswordvalidC(true)
+        }
+        else setPasswordvalidC(false)
+        // eslint-disable-next-line
+    },[cpassword])
     
 
     const add =()=> dispatch(updateUser({
@@ -99,6 +110,21 @@ const Adminedit =()=> {
                         value={password} onChange={e=>setPassword(e.target.value)} />
                         {passwordvalid ?  <Card.Text className="text-danger text-start display-7 mb-0" >
                         password should have atleast 8 letters
+                        </Card.Text>: null  }
+                        </Col>
+                    </Form.Group>
+
+                    <Form.Group as={Row}>
+                        <Form.Label column sm="12" className=" text-start text-success">
+                        confirm Password :
+                        </Form.Label>
+                        <Col sm="12">
+                        <Form.Control
+                        isInvalid={passwordvalidC}
+                        type="password" placeholder="Password"
+                        value={cpassword} onChange={e=>setcPassword(e.target.value)} />
+                        {passwordvalidC ?  <Card.Text className="text-danger text-start display-7 mb-0" >
+                        password doesn't match
                         </Card.Text>: null  }
                         </Col>
                     </Form.Group>

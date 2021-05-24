@@ -6,15 +6,15 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Route, Switch, useHistory } from 'react-router';
 import {BiPencil,BiEdit } from "react-icons/bi";
 import { withRouter } from "react-router";
-import { adminEditIndex, loggedOut, removeUser } from '../redux/actions';
+import { adminEditIndex, removeUser } from '../redux/actions';
 import {GiHamburgerMenu } from "react-icons/gi";
 import {MdCancel, MdDelete} from "react-icons/md";
 
 const Userdashboard = ()=>{
 
     const history = useHistory()
-    const logged = useSelector(state=>state.logged.loggedIn)
-    if(logged === false){
+    const logged =localStorage.getItem("loggedIn")// useSelector(state=>state.logged.loggedIn)
+    if(logged === "false"){
         history.push(`/`)
     }
 
@@ -44,7 +44,7 @@ const Userdashboard = ()=>{
                                      onClick={()=>history.push(`/edit`)}>
                                          {userData.email}   <BiPencil className="mb-1" color="green"/>
                                     </Dropdown.Item>
-                                    <Dropdown.Item onClick={()=>{history.push("/");dispatch(loggedOut())}} className="text-success">Log Out</Dropdown.Item>
+                                    <Dropdown.Item onClick={()=>{history.push("/");localStorage.setItem("loggedIn",false)}} className="text-success">Log Out</Dropdown.Item>
                                     
                                 </Dropdown.Menu>
                                 </Dropdown>
@@ -57,9 +57,9 @@ const Userdashboard = ()=>{
             <Col sm={0} md={2} className="p-0 xs-display-none" >      
             <Nav  className="flex-column sidenav">
             
-            <Nav.Link className="link-success activ active sidelink" onClick={()=>history.push(`/login/${userData.email}`)} >Users</Nav.Link>
-            <Nav.Link className="link-success activ sidelink" onClick={()=>history.push(`/login/${userData.email}/projects`)}>Projects</Nav.Link>
-            <Nav.Link className="link-success activ sidelink" onClick={()=>history.push(`/login/${userData.email}/options`)}>Options</Nav.Link>
+            <Nav.Link className="link-success activ active sidelink" onClick={()=>history.push(`/login`)} >Users</Nav.Link>
+            <Nav.Link className="link-success activ sidelink" onClick={()=>history.push(`/login/projects`)}>Projects</Nav.Link>
+            <Nav.Link className="link-success activ sidelink" onClick={()=>history.push(`/login/options`)}>Options</Nav.Link>
 
             <Accordion className="accord">
             
@@ -69,9 +69,9 @@ const Userdashboard = ()=>{
                 
                 <Accordion.Collapse eventKey="0">
                 <Container fluid>
-                <Nav.Link className="link-success activ" onClick={()=>history.push(`/login/${userData.email}`)} >Users</Nav.Link>
-                <Nav.Link className="link-success activ" onClick={()=>history.push(`/login/${userData.email}/projects`)}>Projects</Nav.Link>
-                <Nav.Link className="link-success activ" onClick={()=>history.push(`/login/${userData.email}/options`)}>Options</Nav.Link>
+                <Nav.Link className="link-success activ" onClick={()=>history.push(`/login`)} >Users</Nav.Link>
+                <Nav.Link className="link-success activ" onClick={()=>history.push(`/login/projects`)}>Projects</Nav.Link>
+                <Nav.Link className="link-success activ" onClick={()=>history.push(`/login/options`)}>Options</Nav.Link>
 
                 </Container>
                 </Accordion.Collapse>
@@ -115,7 +115,7 @@ const Userdashboard = ()=>{
             </Row>
 
             <Switch>
-                <Route exact path="/login/:username">
+                <Route exact path="/login">
                 <p className="display-4 text-success mt-3 text-start px-4">Users</p>
                 <Table striped bordered hover variant="success" className="text-dark display-7 Utable">
                 <thead >
@@ -150,7 +150,7 @@ const Userdashboard = ()=>{
                          : null}
 
                         {userData.role === "admin" ?
-                         <th>{user.index===index ? <MdCancel color="#007E33"/> : <MdDelete color="#007E33" onClick={()=>setmodal(true)}  />}</th>
+                         <th>{user.role==="admin" ? <MdCancel color="#007E33"/> : <MdDelete color="#007E33" onClick={()=>setmodal(true)}  />}</th>
                          : null} 
 
 
@@ -179,11 +179,11 @@ const Userdashboard = ()=>{
 
                 </Route>
 
-                <Route path="/login/:username/projects">
+                <Route path="/login/projects">
                 <p className="display-4 text-success mt-3 text-start px-4">Projects</p>
                 </Route>
 
-                <Route path="/login/:username/options">
+                <Route path="/login/options">
                 <p className="display-4 text-success mt-3 text-start px-4">Options</p>
                 </Route>
             </Switch>

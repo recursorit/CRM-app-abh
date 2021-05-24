@@ -24,7 +24,7 @@ function App() {
         <Route path="/register" >
           <Register />
         </Route>
-        <Route path="/login/:username" >
+        <Route path="/login/" >
           <UserDashboard />
         </Route>
         <Route path="/edit" >

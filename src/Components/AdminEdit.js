@@ -47,7 +47,7 @@ const Adminedit =()=> {
     }
     return(
         <Container>
-            <Row className=" px-4 pt-3 justify-content-center">
+            <Row className="  pt-3 justify-content-center">
             <Col xs={10} lg={8}  className="p-0 mt-5">
             <Card border="success" className=" rounded-0" > 
                 <Card.Body>
@@ -124,7 +124,7 @@ const Adminedit =()=> {
                         
                         <Form.Check inline label="Active" name="group1" type="radio" id={`inline-radio-1`} checked={status==="active"}
                         value={status} onChange={()=>setstatus("active")} />
-                        <Form.Check inline label="Inactive" name="group1" type="radio" id={`inline-radio-2`} checked={status==="active"}
+                        <Form.Check inline label="Inactive" name="group1" type="radio" id={`inline-radio-2`} checked={status==="inactive"}
                         value={status} onChange={()=>setstatus("inactive")} />         
                         </Col>
                     </Form.Group>

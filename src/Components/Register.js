@@ -31,9 +31,7 @@ const Register =()=> {
     }
 
     useEffect(()=>{
-        const logged = localStorage.getItem("loggedIn")// useSelector(state=>state.logged.loggedIn)
-   
-    //const currentUser = localStorage.getItem("currentUser")// useSelector(state=>state.logged.currentUser)
+        const logged = localStorage.getItem("loggedIn")
     if(logged === "true"){
         history.push(`/login`)
     } 

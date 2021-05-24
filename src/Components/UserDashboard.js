@@ -4,13 +4,14 @@ import { useDispatch, useSelector } from 'react-redux'
 import '../dashboard.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Route, Switch, useHistory } from 'react-router';
-import {BiPencil,BiEdit } from "react-icons/bi";
+import {BiEdit } from "react-icons/bi";
 import { withRouter } from "react-router";
 import { adminEditIndex, removeUser } from '../redux/actions';
 import {GiHamburgerMenu } from "react-icons/gi";
 import {MdDelete} from "react-icons/md";
-import EditUser from './editUser';
+
 import AdminEdit from './AdminEdit';
+import AddUser from './AddUser';
 
 const Userdashboard = ()=>{
 
@@ -43,10 +44,6 @@ const Userdashboard = ()=>{
                                 </Dropdown.Toggle>
 
                                 <Dropdown.Menu>
-                                    <Dropdown.Item  className="text-success"
-                                     onClick={()=>history.push(`/login/edit`)}>
-                                         {userData.email}   <BiPencil className="mb-1" color="green"/>
-                                    </Dropdown.Item>
                                     <Dropdown.Item onClick={()=>{history.push("/");localStorage.setItem("loggedIn",false)}} className="text-success">Log Out</Dropdown.Item>
                                     
                                 </Dropdown.Menu>
@@ -131,6 +128,8 @@ const Userdashboard = ()=>{
                     {/* {userData.role === "admin" ? null : <th>Status</th> } */}
                     {/* <th>Role</th> */}
                     <th>Status</th>
+                    {userData.role !== "admin" ? <th>Edit</th> : null}
+
                     {userData.role === "admin" ? <th>Edit</th> : null}
                     {userData.role === "admin" ? <th>Delete</th> : null}
                     </tr>
@@ -145,6 +144,12 @@ const Userdashboard = ()=>{
                         {/* {userData.role === "admin" ? null : <th className="text-success">{user.status}</th> } */}
                         {/* <th className="text-success">{user.role}</th> */}
                         <th className="text-success">{user.status}</th>
+                        {userData.role !== "admin" ?
+                         user.index === index ? <th><BiEdit color="#007E33" onClick={
+                            ()=>{ return (history.push(`/login/AdminEdit`),
+                                dispatch(adminEditIndex(user.index)))}   
+                           } /></th> :<th></th>
+                         : null}
                         {userData.role === "admin" ?
                          <th><BiEdit color="#007E33" onClick={
                              ()=>{ return (history.push(`/login/AdminEdit`),
@@ -179,7 +184,9 @@ const Userdashboard = ()=>{
                     
                 </tbody>
                 </Table>
-
+                            {userData.role=== "admin" ? <Button
+                                                        onClick={()=>history.push("/login/addUser")}
+                                                        variant="outline-success"> Add Users</Button> :null}
                 </Route>
 
                 <Route path="/login/projects">
@@ -190,11 +197,12 @@ const Userdashboard = ()=>{
                 <p className="display-4 text-success mt-3 text-start px-4">Options</p>
                 </Route>
 
-                <Route path="/login/edit" >
-                <EditUser />
-                </Route>
+                
                 <Route path="/login/AdminEdit" >
                 <AdminEdit />
+                </Route>
+                <Route path="/login/addUser" >
+                <AddUser />
                 </Route>
             </Switch>
 

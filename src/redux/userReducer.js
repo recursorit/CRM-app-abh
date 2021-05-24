@@ -1,5 +1,5 @@
 import moment from "moment";
-import { ADD_USER, REMOVE_USER, UPDATE_USER } from "./actions"
+import { ADD_USER, ADMIN_ADD, REMOVE_USER, UPDATE_USER } from "./actions"
 
 
 
@@ -34,6 +34,19 @@ const userReducer = (state=initialState,action)=>{
                                             index: state.users.length
                                         }]
             }
+
+            case ADMIN_ADD :
+            
+                return{
+                    ...state,
+                    users: [...state.users,{...action.payload,
+                                                joined: moment().format('YYYY-MM-DD'),
+                                                joinedTime:moment().format('h:mm:ss a'),
+                                                index: state.users.length
+                                            }]
+                }
+
+
         case UPDATE_USER :
             
             return{
@@ -57,7 +70,7 @@ const userReducer = (state=initialState,action)=>{
             } 
         
             case REMOVE_USER :
-            console.log(action.payload);
+            
                 return{
                     ...state,
                     users:state.users.filter(user=> user.index !== action.payload) 

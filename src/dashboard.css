@@ -18,7 +18,8 @@
 }
 
 @media (max-width: 767px) {
-    .sidenav{
+    .sidenav{min-height: min-content;
+
         height:min-content;
         padding: 0.5rem;
         background: rgb(203, 247, 202);

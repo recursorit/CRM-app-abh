@@ -57,9 +57,10 @@ const Userdashboard = ()=>{
             <Col sm={0} md={2} className="p-0 xs-display-none" >      
             <Nav  className="flex-column sidenav">
             
-            <Nav.Link className="link-success activ active sidelink" onClick={()=>history.push(`/login`)} >Users</Nav.Link>
-            <Nav.Link className="link-success activ sidelink" onClick={()=>history.push(`/login/projects`)}>Projects</Nav.Link>
-            <Nav.Link className="link-success activ sidelink" onClick={()=>history.push(`/login/options`)}>Options</Nav.Link>
+            <Nav.Link className="link-success activ active sidelink" onClick={()=>history.push(`/dashboard`)} >Dashboard</Nav.Link>
+            <Nav.Link className="link-success activ active sidelink" onClick={()=>history.push(`/dashboard/users`)} >Users</Nav.Link>
+            <Nav.Link className="link-success activ sidelink" onClick={()=>history.push(`/dashboard/projects`)}>Projects</Nav.Link>
+            <Nav.Link className="link-success activ sidelink" onClick={()=>history.push(`/dashboard/options`)}>Options</Nav.Link>
 
             <Accordion className="accord">
             
@@ -69,9 +70,11 @@ const Userdashboard = ()=>{
                 
                 <Accordion.Collapse eventKey="0">
                 <Container fluid>
-                <Nav.Link className="link-success activ" onClick={()=>history.push(`/login`)} >Users</Nav.Link>
-                <Nav.Link className="link-success activ" onClick={()=>history.push(`/login/projects`)}>Projects</Nav.Link>
-                <Nav.Link className="link-success activ" onClick={()=>history.push(`/login/options`)}>Options</Nav.Link>
+
+                <Nav.Link className="link-success activ" onClick={()=>history.push(`/dashboard`)} >Dashboard</Nav.Link>
+                <Nav.Link className="link-success activ" onClick={()=>history.push(`/dashboard/users`)} >Users</Nav.Link>
+                <Nav.Link className="link-success activ" onClick={()=>history.push(`/dashboard/projects`)}>Projects</Nav.Link>
+                <Nav.Link className="link-success activ" onClick={()=>history.push(`/dashboard/options`)}>Options</Nav.Link>
 
                 </Container>
                 </Accordion.Collapse>
@@ -81,6 +84,10 @@ const Userdashboard = ()=>{
             </Col>
             <Col xs={12} md={10}  className="p-0">  
             <Container >
+            
+            <Switch>
+
+            <Route path="/dashboard" exact >
             <Row className="pt-4">    
             <Col xs={12} md={4}>
             <Card className="m-2" border="success">
@@ -114,9 +121,13 @@ const Userdashboard = ()=>{
             </Col>
             </Row>
 
-            <Switch>
-                <Route exact path="/login">
-                <p className="display-4 text-success mt-3 text-start px-4">Users</p>
+            </Route>
+
+                <Route exact path="/dashboard/users">
+               <Row> <Col xs={6} className="text-start"><p className="display-4 text-success mt-3 text-start px-4">Users</p></Col>
+                {userData.role=== "admin" ? <Col className="text-end"> <Button className="adduser"
+                                                        onClick={()=>history.push("/dashboard/addUser")}
+                                                        variant="outline-success"> Add Users</Button></Col> :null} </Row>
                 <Table striped bordered hover variant="success" className="text-dark display-7 Utable">
                 <thead >
                     <tr>
@@ -135,7 +146,7 @@ const Userdashboard = ()=>{
                     </tr>
                 </thead>
                 <tbody>
-                    {userList.map(user=><tr key={user.index}>
+                    {userData.role==="admin" ?  userList.map(user=><tr key={user.index}>
                         <th className="text-success">{user.firstname} {user.lastname}</th>
                         {/* <th className="text-success">{user.lastname}</th> */}
                         <th className="text-success">{user.email}</th>
@@ -146,13 +157,13 @@ const Userdashboard = ()=>{
                         <th className="text-success">{user.status}</th>
                         {userData.role !== "admin" ?
                          user.index === index ? <th><BiEdit color="#007E33" onClick={
-                            ()=>{ return (history.push(`/login/AdminEdit`),
+                            ()=>{ return (history.push(`/dashboard/AdminEdit`),
                                 dispatch(adminEditIndex(user.index)))}   
                            } /></th> :<th></th>
                          : null}
                         {userData.role === "admin" ?
                          <th><BiEdit color="#007E33" onClick={
-                             ()=>{ return (history.push(`/login/AdminEdit`),
+                             ()=>{ return (history.push(`/dashboard/AdminEdit`),
                                  dispatch(adminEditIndex(user.index)))}   
                             } /></th>
                          : null}
@@ -178,30 +189,48 @@ const Userdashboard = ()=>{
                                 </Modal>
 
 
-                    </tr>)}
+                    </tr>):
+                    userList.map(user=>
+                        user.role === "admin" ? null :
+                        <tr key={user.index}>
+                        <th className="text-success">{user.firstname} {user.lastname}</th>
+                        
+                        <th className="text-success">{user.email}</th>
+                        
+                         <th className="text-success">{user.role}</th> 
+                        
+                        <th className="text-success">{user.status}</th>
+                        {userData.role !== "admin" ?
+                         user.index === index ? <th><BiEdit color="#007E33" onClick={
+                            ()=>{ return (history.push(`/dashboard/AdminEdit`),
+                                dispatch(adminEditIndex(user.index)))}   
+                           } /></th> :<th></th>
+                           : null}
+                           </tr>   
+                        
+                        )
+
+                    }
                             
                    
                     
                 </tbody>
                 </Table>
-                            {userData.role=== "admin" ? <Button
-                                                        onClick={()=>history.push("/login/addUser")}
-                                                        variant="outline-success"> Add Users</Button> :null}
                 </Route>
 
-                <Route path="/login/projects">
+                <Route path="/dashboard/projects">
                 <p className="display-4 text-success mt-3 text-start px-4">Projects</p>
                 </Route>
 
-                <Route path="/login/options">
+                <Route path="/dashboard/options">
                 <p className="display-4 text-success mt-3 text-start px-4">Options</p>
                 </Route>
 
                 
-                <Route path="/login/AdminEdit" >
+                <Route path="/dashboard/AdminEdit" >
                 <AdminEdit />
                 </Route>
-                <Route path="/login/addUser" >
+                <Route path="/dashboard/addUser" >
                 <AddUser />
                 </Route>
             </Switch>

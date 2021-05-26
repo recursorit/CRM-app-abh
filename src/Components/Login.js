@@ -27,8 +27,8 @@ const Login =()=> {
 
 
     const validation = () => {
-        return (userList.some(obj=>obj.email === email) ? null : setloginvalid(true),
-               userList.some(obj=>obj.password === btoa(password))? null : setpassvalid(true))
+        return (userList.some(obj=>obj.email === email) ? setloginvalid(false) : setloginvalid(true),
+               userList.some(obj=>obj.password === btoa(password))? setpassvalid(false) : setpassvalid(true))
         
     }
 
@@ -36,14 +36,14 @@ const Login =()=> {
         return userList.some((obj=>obj.email === email) && (obj=>obj.password === btoa(password))) ? 
         (updateIndex(),localStorage.setItem("loggedIn",true),
         localStorage.setItem("currentUser",email),
-        history.push(`/login`)):
+        history.push(`/dashboard`)):
         validation()
     }
 
     useEffect(()=>{
         const logged = localStorage.getItem("loggedIn")
     if(logged === "true"){
-        history.push(`/login`)
+        history.push(`/dashboard`)
     } 
     },[history])
 

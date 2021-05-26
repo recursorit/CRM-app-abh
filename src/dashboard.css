@@ -13,6 +13,10 @@
     font-weight: 700;
 }
 
+.adduser{
+    margin-top: 2.1rem;
+    margin-right: 1rem;
+}
 .accord{
     display: none;
 }
@@ -32,6 +36,11 @@
 
     .sidelink{
         display: none;
+    }
+
+    .adduser{
+        margin-top: 1rem;
+        margin-right: 1rem;
     }
 }
 

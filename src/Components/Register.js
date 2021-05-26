@@ -36,7 +36,7 @@ const Register =()=> {
     useEffect(()=>{
         const logged = localStorage.getItem("loggedIn")
     if(logged === "true"){
-        history.push(`/login`)
+        history.push(`/dashboard`)
     } 
     },[history])
 

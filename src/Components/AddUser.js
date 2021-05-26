@@ -39,7 +39,7 @@ const AddUser =()=> {
     const addUsers = ()=>{
         return ((email.includes("@" && ".")) && (email.indexOf(".") < (email.length-2))) ? (setEmailvalid(false),(password.length > 7) ?
         (add(),
-        history.push('/login')) : setPasswordvalid(true)) : setEmailvalid(true)
+        history.push('/dashboard')) : setPasswordvalid(true)) : setEmailvalid(true)
     }
 
     useEffect(()=>{

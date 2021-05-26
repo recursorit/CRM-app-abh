@@ -6,8 +6,8 @@ import { ADD_USER, ADMIN_ADD, REMOVE_USER, UPDATE_USER } from "./actions"
 const initialState={
     users:[
         {
-            email:"abh",
-            password:btoa("abh"),
+            email:"abh@a.com",
+            password:btoa("abhabhabh"),
             firstname:"Abh",
             lastname:"T",
             role:"admin" ,

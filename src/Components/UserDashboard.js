@@ -132,12 +132,11 @@ const Userdashboard = ()=>{
                 <thead >
                     <tr>
                     <th> Name</th>
-                    {/* <th>Last Name</th> */}
+                    
                     <th>Email</th>
-                    {/* <th>Joined</th> */}
+                   
                     {userData.role === "admin" ? null : <th>Role</th> }
-                    {/* {userData.role === "admin" ? null : <th>Status</th> } */}
-                    {/* <th>Role</th> */}
+                   
                     <th>Status</th>
                     {userData.role !== "admin" ? <th>Edit</th> : null}
 
@@ -148,12 +147,11 @@ const Userdashboard = ()=>{
                 <tbody>
                     {userData.role==="admin" ?  userList.map(user=><tr key={user.index}>
                         <th className="text-success">{user.firstname} {user.lastname}</th>
-                        {/* <th className="text-success">{user.lastname}</th> */}
+                        
                         <th className="text-success">{user.email}</th>
-                        {/* <th className="text-success">{user.joined}</th> */}
+                        
                         {userData.role === "admin" ? null :  <th className="text-success">{user.role}</th> }
-                        {/* {userData.role === "admin" ? null : <th className="text-success">{user.status}</th> } */}
-                        {/* <th className="text-success">{user.role}</th> */}
+                        
                         <th className="text-success">{user.status}</th>
                         {userData.role !== "admin" ?
                          user.index === index ? <th><BiEdit color="#007E33" onClick={

@@ -4,14 +4,20 @@ import { useDispatch, useSelector } from 'react-redux'
 import '../dashboard.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Route, Switch, useHistory } from 'react-router';
-import {BiEdit } from "react-icons/bi";
 import { withRouter } from "react-router";
 import { adminEditIndex, removeUser } from '../redux/actions';
 import {GiHamburgerMenu } from "react-icons/gi";
+import {BiEdit } from "react-icons/bi";
 import {MdDelete} from "react-icons/md";
 
 import AdminEdit from './AdminEdit';
 import AddUser from './AddUser';
+import Category from './Category';
+import Projects from './projects';
+import EditCategory from './EditCategory';
+import AddCategory from './AddCategory';
+import EditProject from './EditProject';
+import AddProject from './AddProject';
 
 const Userdashboard = ()=>{
 
@@ -60,7 +66,7 @@ const Userdashboard = ()=>{
             <Nav.Link className="link-success activ active sidelink" onClick={()=>history.push(`/dashboard`)} >Dashboard</Nav.Link>
             <Nav.Link className="link-success activ active sidelink" onClick={()=>history.push(`/dashboard/users`)} >Users</Nav.Link>
             <Nav.Link className="link-success activ sidelink" onClick={()=>history.push(`/dashboard/projects`)}>Projects</Nav.Link>
-            <Nav.Link className="link-success activ sidelink" onClick={()=>history.push(`/dashboard/options`)}>Options</Nav.Link>
+            <Nav.Link className="link-success activ sidelink" onClick={()=>history.push(`/dashboard/Category`)}>Category</Nav.Link>
 
             <Accordion className="accord">
             
@@ -74,7 +80,7 @@ const Userdashboard = ()=>{
                 <Nav.Link className="link-success activ" onClick={()=>history.push(`/dashboard`)} >Dashboard</Nav.Link>
                 <Nav.Link className="link-success activ" onClick={()=>history.push(`/dashboard/users`)} >Users</Nav.Link>
                 <Nav.Link className="link-success activ" onClick={()=>history.push(`/dashboard/projects`)}>Projects</Nav.Link>
-                <Nav.Link className="link-success activ" onClick={()=>history.push(`/dashboard/options`)}>Options</Nav.Link>
+                <Nav.Link className="link-success activ" onClick={()=>history.push(`/dashboard/Category`)}>Category</Nav.Link>
 
                 </Container>
                 </Accordion.Collapse>
@@ -112,9 +118,9 @@ const Userdashboard = ()=>{
             <Col xs={12} md={4}>
             <Card className="m-2" border="success">
                     <Card.Body>
-                    <Card.Title className="text-success">Options</Card.Title>
+                    <Card.Title className="text-success">Category</Card.Title>
                     <Card.Text>
-                        No. of options - 0
+                        No. of Category - 0
                     </Card.Text>
                     </Card.Body>
                 </Card>
@@ -217,11 +223,19 @@ const Userdashboard = ()=>{
                 </Route>
 
                 <Route path="/dashboard/projects">
-                <p className="display-4 text-success mt-3 text-start px-4">Projects</p>
+                <Row> <Col xs={6} className="text-start"><p className="display-4 text-success mt-3 text-start px-4">Projects</p></Col>
+                {userData.role=== "admin" ? <Col className="text-end"> <Button className="adduser"
+                                                        onClick={()=>history.push("/dashboard/addProject")}
+                                                        variant="outline-success"> Add project</Button></Col> :null} </Row>
+                <Projects />
                 </Route>
 
-                <Route path="/dashboard/options">
-                <p className="display-4 text-success mt-3 text-start px-4">Options</p>
+                <Route path="/dashboard/Category">
+                <Row> <Col xs={6} className="text-start"><p className="display-4 text-success mt-3 text-start px-4">Category</p></Col>
+                {userData.role=== "admin" ? <Col className="text-end"> <Button className="adduser"
+                                                        onClick={()=>history.push("/dashboard/addCategory")}
+                                                        variant="outline-success"> Add category</Button></Col> :null} </Row>
+                <Category />
                 </Route>
 
                 
@@ -230,6 +244,20 @@ const Userdashboard = ()=>{
                 </Route>
                 <Route path="/dashboard/addUser" >
                 <AddUser />
+                </Route>
+
+                <Route path="/dashboard/editProject" >
+                <EditProject />
+                </Route>
+                <Route path="/dashboard/addProject" >
+                < AddProject />
+                </Route>
+
+                <Route path="/dashboard/categoryEdit" >
+                <EditCategory />
+                </Route>
+                <Route path="/dashboard/addCategory" >
+                <AddCategory />
                 </Route>
             </Switch>
 

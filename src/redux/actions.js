@@ -1,8 +1,8 @@
 export const ADD_USER = "ADD_USER";
 export const GET_INDEX = "GET_INDEX";
 export const UPDATE_USER = "UPDATE_USER";
-export const EDIT_INDEX = "EDIT_INDEX";
 export const REMOVE_USER = "REMOVE_USER"
+export const EDIT_INDEX = "EDIT_INDEX";
 export const ADMIN_ADD ="ADMIN_ADD"
 
 export const addUser = (info) => {

@@ -67,6 +67,7 @@ const EditProject = () =>{
                     project:project,
                     developer:developer,
                     category:category
+                    // eslint-disable-next-line
                 })),history.push("/dashboard/projects"))}
                 variant="outline-success" className="m-4">Update Project</Button>
                 </Form>

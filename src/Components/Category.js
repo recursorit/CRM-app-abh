@@ -30,7 +30,9 @@ const Category = () =>{
             {categories.map(cate=><tr key={cate.index}>
                         <th>{cate.category}</th>
                         <th>{cate.joined}</th>
-                        <th><BiEdit onClick={()=>(dispatch(categoryIndex(cate.index)),history.push("/dashboard/categoryEdit"))}/></th>
+                        <th><BiEdit 
+                         // eslint-disable-next-line
+                        onClick={()=>(dispatch(categoryIndex(cate.index)),history.push("/dashboard/categoryEdit"))}/></th>
                         <th><MdDelete onClick={()=>setmodal(true) } /></th>
 
                         <Modal show={modal} onHide={() => setmodal(false)}>

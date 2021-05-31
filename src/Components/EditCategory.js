@@ -34,6 +34,7 @@ const EditCategory = () =>{
             
 
             <Button disabled={!category}
+            // eslint-disable-next-line
             onClick={()=>(dispatch(updateCategory(category)),history.push("/dashboard/Category"))}
             variant="outline-success" className="m-4">Update category</Button>
             </Form>

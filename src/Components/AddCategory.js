@@ -31,6 +31,7 @@ const AddCategory = () =>{
             
 
             <Button disabled={!category}
+             // eslint-disable-next-line
             onClick={()=>(dispatch(addCategory(category)),history.push("/dashboard/Category"))}
             variant="outline-success" className="m-4">Add category</Button>
             </Form>

@@ -32,7 +32,10 @@ const Projects = () =>{
                         <th>{pro.created}</th>
                         <th>{pro.developer}</th>
                         <th>{pro.category}</th>
-                        <th><BiEdit onClick={()=>(dispatch(projectIndex(pro.index)),history.push("/dashboard/editProject"))}/></th>
+                       
+                        <th><BiEdit
+                         // eslint-disable-next-line
+                         onClick={()=>(dispatch(projectIndex(pro.index)),history.push("/dashboard/editProject"))}/></th>
                         <th><MdDelete onClick={()=>setmodal(true) } /></th>
 
                         <Modal show={modal} onHide={() => setmodal(false)}>

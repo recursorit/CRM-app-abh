@@ -54,7 +54,7 @@ const Adminedit =()=> {
     const addUsers = ()=>{
         return email.includes("@" && ".com") ? (setEmailvalid(false),(password.length > 7) ?
         (add(),
-        history.push(`/dashboard`)) : setPasswordvalid(true)) : setEmailvalid(true)
+        history.push(`/dashboard/users`)) : setPasswordvalid(true)) : setEmailvalid(true)
     }
     return(
         <Container>

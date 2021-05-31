@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { Button, Modal, Table } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
+import { Button, Modal, Table } from 'react-bootstrap'
 import {BiEdit } from "react-icons/bi";
 import {MdDelete} from "react-icons/md";
 import { useHistory } from 'react-router';

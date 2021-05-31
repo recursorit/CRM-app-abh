@@ -30,6 +30,8 @@ const Userdashboard = ()=>{
     const [modal,setmodal]= useState(false)
 
     const userList = useSelector(state=>state.users.users)
+    const projects=useSelector(state=>state.project.projects)
+    const categories=useSelector(state=>state.category.categories)
     const index = useSelector(state=>state.index.currentuser)
     const userData = userList[index]
     const dispatch = useDispatch()
@@ -110,7 +112,7 @@ const Userdashboard = ()=>{
                     <Card.Body>
                     <Card.Title className="text-success">Projects</Card.Title>
                     <Card.Text>
-                        No. of Projects - 0
+                        No. of Projects - {projects.length}
                     </Card.Text>
                     </Card.Body>
                 </Card>
@@ -120,7 +122,7 @@ const Userdashboard = ()=>{
                     <Card.Body>
                     <Card.Title className="text-success">Category</Card.Title>
                     <Card.Text>
-                        No. of Category - 0
+                        No. of Category - {categories.length}
                     </Card.Text>
                     </Card.Body>
                 </Card>

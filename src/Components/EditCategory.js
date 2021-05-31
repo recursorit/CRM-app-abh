@@ -34,7 +34,7 @@ const EditCategory = () =>{
             
 
             <Button disabled={!category}
-             onClick={()=>(dispatch(updateCategory(category)),history.push("/dashboard/Category"))}
+            onClick={()=>(dispatch(updateCategory(category)),history.push("/dashboard/Category"))}
             variant="outline-success" className="m-4">Update category</Button>
             </Form>
         </Card.Body>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, {  useState } from 'react'
 import { Accordion, Button, Card, Col, Container, Dropdown, Modal, Nav, Navbar, Row,Table } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import '../dashboard.css'
@@ -19,6 +19,7 @@ import AddCategory from './AddCategory';
 import EditProject from './EditProject';
 import AddProject from './AddProject';
 
+
 const Userdashboard = ()=>{
 
     const history = useHistory()
@@ -28,15 +29,15 @@ const Userdashboard = ()=>{
     }
 
     const [modal,setmodal]= useState(false)
-
-    const userList = useSelector(state=>state.users.users)
+    
     const projects=useSelector(state=>state.project.projects)
     const categories=useSelector(state=>state.category.categories)
+    const userList = useSelector(state=>state.users.users)
     const index = useSelector(state=>state.index.currentuser)
     const userData = userList[index]
     const dispatch = useDispatch()
-
     
+   
 
     return(
         <Container fluid className="p-0 m-0">
@@ -188,7 +189,7 @@ const Userdashboard = ()=>{
                                         <Button variant="success" onClick={() => setmodal(false)}>
                                             Close
                                         </Button>
-                                        {user.role==="admin"? null : <Button variant="danger" onClick={()=>{dispatch(removeUser(user.index)); setmodal(false)}}>
+                                        {user.role==="admin"? null : <Button variant="danger" onClick={()=>{dispatch(removeUser(user.index)); setmodal(false);localStorage.setItem("deleteproject",false)}}>
                                             Delete
                                         </Button>}
                                     </Modal.Footer>
@@ -262,6 +263,13 @@ const Userdashboard = ()=>{
                 <AddCategory />
                 </Route>
             </Switch>
+
+
+
+
+            
+
+
 
                 
             </Container>
